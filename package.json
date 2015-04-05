@@ -25,7 +25,6 @@
     "gulp-livereload": "^2.1.1",
     "gulp-mocha": "^2.0.1",
     "gulp-nodemon": "^1.0.4",
-    "gulp-notify": "^2.0.1",
     "gulp-sourcemaps": "^1.2.8",
     "gulp-spawn-mocha": "^2.0.1",
     "gulp-util": "^3.0.1",
@@ -36,6 +35,11 @@
     "tiny-lr": "^0.1.4",
     "tween": "^0.9.0"
   },
+  "devDependencies": {
+    "gulp-notify": "^2.0.1"
+  
+  },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/mach1/SpaceInvaders3D"

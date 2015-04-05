@@ -8,7 +8,6 @@ refresh = require 'gulp-livereload'
 lrserver = require('tiny-lr')()
 livereload = require 'connect-livereload'
 nodemon = require 'gulp-nodemon'
-notify = require 'gulp-notify'
 mocha = require 'gulp-spawn-mocha'
 require 'coffee-script/register'
 livereloadport = 35729
@@ -43,7 +42,6 @@ gulp.task 'browserify', ->
     .pipe concat 'bundle.js'
     .pipe gulp.dest 'webapp/dist/js'
     .pipe refresh lrserver
-    .pipe notify message: 'Browserified'
 
 gulp.task 'html', ->
   gulp.src 'webapp/app/index.html'
@@ -53,7 +51,6 @@ gulp.task 'html', ->
   gulp.src 'webapp/app/views/*.html'
     .pipe gulp.dest 'webapp/dist/views'
     .pipe refresh lrserver
-    .pipe notify message : 'HTML reloaded'
 
 gulp.task 'livereload', ->
   lrserver.listen livereloadport, (err) ->
