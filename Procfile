@@ -1,1 +1,1 @@
-web: node_modules/coffee-script/bin/coffee server/bin/server.coffee
+web: node_modules/gulp/bin/gulp production
