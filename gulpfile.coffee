@@ -9,6 +9,8 @@ lrserver = require('tiny-lr')()
 livereload = require 'connect-livereload'
 nodemon = require 'gulp-nodemon'
 notify = require 'gulp-notify'
+mocha = require 'gulp-spawn-mocha'
+require 'coffee-script/register'
 livereloadport = 35729
 serverport = 5000
 
@@ -60,7 +62,7 @@ gulp.task 'livereload', ->
 gulp.task 'build', ['copyDeps', 'html', 'styles', 'lint', 'browserify']
 
 gulp.task 'watch', ->
- gulp.watch paths.scripts, ['lint', 'browserify']
+ gulp.watch paths.scripts, ['mocha', 'lint', 'browserify']
  gulp.watch paths.html, ['lint', 'html']
  gulp.watch paths.styles, ['styles']
 
@@ -68,4 +70,13 @@ gulp.task 'copyDeps', ->
   gulp.src 'node_modules/bootstrap/dist/css/bootstrap.css'
     .pipe gulp.dest 'webapp/dist/css'
 
-gulp.task 'default', ['build', 'livereload', 'serve', 'watch']
+gulp.task 'mocha', ->
+  gulp.src(['webapp/test/*.coffee', 'webapp/test/**/*.coffee'], { read: false })
+    .pipe(mocha({
+      istanbul: true
+    })).on('error', gutil.log)
+
+gulp.task 'watch-mocha', ->
+  gulp.watch ['webapp/test/**', 'webapp/test/**/**'], ['mocha']
+
+gulp.task 'default', ['build', 'mocha', 'livereload', 'serve', 'watch', 'watch-mocha']

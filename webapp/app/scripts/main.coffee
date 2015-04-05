@@ -19,7 +19,6 @@ camera.position.z = 5
 
 render = ->
   requestAnimationFrame render
-  console.log scene, camera
   renderer.render scene, camera
   cube.rotation.x += 0.1
 render()
