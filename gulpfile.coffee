@@ -10,10 +10,9 @@ livereload = require 'connect-livereload'
 nodemon = require 'gulp-nodemon'
 mocha = require 'gulp-spawn-mocha'
 require 'coffee-script/register'
+expressroot = __dirname
 livereloadport = 35729
 serverport = 5000
-
-console.log "process.env.port: " + process.env.PORT
 
 paths =
   styles : ['webapp/app/styles/*.css']
@@ -35,7 +34,7 @@ gulp.task 'styles', ->
     .pipe gulp.dest 'webapp/dist/css'
     .pipe refresh lrserver
 
-gulp.task 'browserify', ->
+gulp.task 'browserify', (event) ->
   gulp.src 'webapp/app/scripts/main.coffee', read: false
     .pipe browserify
       debug: true
@@ -44,6 +43,7 @@ gulp.task 'browserify', ->
     .pipe concat 'bundle.js'
     .pipe gulp.dest 'webapp/dist/js'
     .pipe refresh lrserver
+
 
 gulp.task 'html', ->
   gulp.src 'webapp/app/index.html'
@@ -58,7 +58,11 @@ gulp.task 'livereload', ->
   lrserver.listen livereloadport, (err) ->
     console.error err if err
 
-gulp.task 'build', ['copyDeps', 'html', 'styles', 'lint', 'browserify']
+gulp.task 'textures', ->
+  gulp.src 'webapp/app/textures/*.jpg'
+    .pipe gulp.dest 'webapp/dist/textures'
+
+gulp.task 'build', ['copyDeps', 'html', 'styles', 'lint', 'browserify', 'textures']
 
 gulp.task 'watch', ->
  gulp.watch paths.scripts, ['mocha', 'lint', 'browserify']
