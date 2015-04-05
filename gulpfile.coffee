@@ -73,10 +73,12 @@ gulp.task 'copyDeps', ->
 gulp.task 'mocha', ->
   gulp.src(['webapp/test/*.coffee', 'webapp/test/**/*.coffee'], { read: false })
     .pipe(mocha({
-      istanbul: true
+      require: ['sinon']
     })).on('error', gutil.log)
 
 gulp.task 'watch-mocha', ->
   gulp.watch ['webapp/test/**', 'webapp/test/**/**'], ['mocha']
 
 gulp.task 'default', ['build', 'mocha', 'livereload', 'serve', 'watch', 'watch-mocha']
+
+gulp.task 'production', ['build', 'serve']

@@ -1,6 +1,5 @@
 Graphics = require '../../app/scripts/graphics/graphics.coffee'
 THREE = require 'three'
-sinon = require 'sinon'
 must = require 'must'
 describe 'graphics', ->
 
