@@ -13,7 +13,7 @@ require 'coffee-script/register'
 livereloadport = 35729
 serverport = 5000
 
-console.log "process.env.port: " + process.env.port
+console.log "process.env.port: " + process.env.PORT
 
 paths =
   styles : ['webapp/app/styles/*.css']
