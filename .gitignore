@@ -3,3 +3,6 @@ webapp/node_modules/
 server/node_modules/
 server/data
 webapp/dist
+.DS_Store
+webapp/.DS_Store
+webapp/app/.DS_Store
