@@ -4,6 +4,7 @@
   "description": "Space Invaders clone in 3D",
   "main": "gulpfile.js",
   "scripts": {
+    "start": "node node_modules/gulp/bin/gulp.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jaan Lambert",
